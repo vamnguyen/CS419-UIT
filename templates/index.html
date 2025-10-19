@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>IR Demo</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h2 class="site-title">Hệ thống Tìm kiếm Tài liệu (Demo)</h2>
+        <p class="subtitle">
+          Thử nghiệm các phương pháp truy vấn: Cosine, BM25, QL, Odds
+        </p>
+
+        <form class="search-form" action="/search" method="post">
+          <input
+            class="search-input"
+            type="text"
+            name="query"
+            placeholder="Nhập truy vấn..."
+            required
+          />
+          <select class="search-select" name="method">
+            <option value="cosine">Cosine (TF-IDF)</option>
+            <option value="bm25">BM25</option>
+            <option value="ql">Query Likelihood</option>
+            <option value="odds">Odds (LR)</option>
+          </select>
+          <input
+            class="search-number"
+            type="number"
+            name="k"
+            value="10"
+            min="1"
+          />
+          <button class="btn" type="submit">Search</button>
+        </form>
+
+        <p class="note">
+          <a class="link" href="/eval">Evaluation</a> (dùng sau khi mark
+          relevant)
+        </p>
+        <hr />
+        <p class="note">
+          Ghi chú: lần chạy đầu tiên sẽ build index & TF-IDF (có thể vài phút
+          với dataset lớn). Những lần sau sẽ load cache rất nhanh.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Evaluation</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h3 class="site-title">Evaluation</h3>
+        <p class="note">
+          Number of labeled queries: <strong>{{ n_queries }}</strong>
+        </p>
+        <form class="eval-form" method="post">
+          Method:
+          <select name="method" class="search-select">
+            <option value="cosine">Cosine</option>
+            <option value="bm25">BM25</option>
+            <option value="ql">Query Likelihood</option>
+            <option value="odds">Odds</option>
+          </select>
+          K:
+          <input class="search-number" type="number" name="k" value="10" />
+          <button class="btn" type="submit">Compute</button>
+        </form>
+
+        {% if results %}
+        <h4>Summary (method={{ results.method }}, k={{ results.k }})</h4>
+        <table class="eval-table">
+          <tr>
+            <th>#queries</th>
+            <td>{{ results.n_queries }}</td>
+          </tr>
+          <tr>
+            <th>Mean Precision</th>
+            <td>{{ "%.4f"|format(results.precision_mean) }}</td>
+          </tr>
+          <tr>
+            <th>Mean Recall</th>
+            <td>{{ "%.4f"|format(results.recall_mean) }}</td>
+          </tr>
+          <tr>
+            <th>Mean F1</th>
+            <td>{{ "%.4f"|format(results.f1_mean) }}</td>
+          </tr>
+          <tr>
+            <th>Mean P@k</th>
+            <td>{{ "%.4f"|format(results.p_at_k_mean) }}</td>
+          </tr>
+          <tr>
+            <th>MAP@k</th>
+            <td>{{ "%.4f"|format(results.map_at_k) }}</td>
+          </tr>
+          <tr>
+            <th>Mean NDCG@k</th>
+            <td>{{ "%.4f"|format(results.ndcg_mean) }}</td>
+          </tr>
+        </table>
+        {% endif %}
+
+        <p class="note"><a class="link" href="/">Back</a></p>
+        <hr />
+        <p class="note">
+          Hướng dẫn: chạy các truy vấn trên trang Search, click "Mark Relevant"
+          cho từng kết quả để tạo ground truth, sau đó vào trang Evaluation để
+          tính các độ đo.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

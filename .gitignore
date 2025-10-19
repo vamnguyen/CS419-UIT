@@ -1,0 +1,50 @@
+# Ignore Python cache & environment
+
+**pycache**/
+*.pyc
+*.pyo
+*.pyd
+*.pkl
+*.npz
+*.jsonl
+
+# Virtual environment
+
+.venv/
+env/
+venv/
+
+# macOS system files
+
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# VSCode / IDE configs
+
+.vscode/
+.idea/
+*.code-workspace
+
+# Logs & temporary files
+
+*.log
+*.tmp
+*.bak
+
+# Dataset caches & generated files
+news_dataset.json
+
+cache_index.pkl
+tfidf_vectorizer.pkl
+tfidf_matrix.npz
+news_tokenized.json
+
+# Jupyter / Notebook checkpoints
+
+.ipynb_checkpoints/
+
+# Backup / export folders
+
+/output/
+/results/

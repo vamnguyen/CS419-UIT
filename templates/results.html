@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Results</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h3 class="site-title">
+          Kết quả cho: "{{ query }}" <small class="muted">({{ method }})</small>
+        </h3>
+        <p class="note">
+          <a class="link" href="/">Back</a> |
+          <a class="link" href="/eval">Evaluation</a>
+        </p>
+
+        <div class="results">
+          {% for r in results %}
+          <div class="result-item">
+            <h4 class="result-title">{{ loop.index }}. {{ r.title }}</h4>
+            <div class="result-meta">
+              ID: {{ r.doc_id }} | Author: {{ r.author if r.author else "N/A" }}
+              | Topic: {{ r.topic if r.topic else "N/A" }} | Source: {{ r.source
+              if r.source else "N/A" }} | Score: {{ "%.4f"|format(r.score) }}
+            </div>
+            <p class="result-snippet">{{ r.snippet }}</p>
+            <div class="result-actions">
+              <button
+                class="action-btn primary"
+                onclick="mark('{{ r.doc_id }}', true)"
+              >
+                Mark Relevant
+              </button>
+              <button
+                class="action-btn danger"
+                onclick="mark('{{ r.doc_id }}', false)"
+              >
+                Unmark
+              </button>
+              <a class="link" href="{{ r.url }}" target="_blank">Open</a>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+
+        <script>
+          function mark(doc_id, rel) {
+            fetch("/mark", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                query: "{{ query }}",
+                doc_id: doc_id,
+                relevant: rel,
+              }),
+            })
+              .then((r) => r.json())
+              .then((j) => {
+                if (j.ok) alert("Saved.");
+                else alert("Error");
+              });
+          }
+        </script>
+      </div>
+    </div>
+  </body>
+</html>
