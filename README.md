@@ -27,7 +27,7 @@
 | STT | MSSV | Họ và Tên | Github | Email |
 | ------ |:-------------:| ----------------------:|-----------------------------------------------------:|-------------------------:
 | 1 | 22520880 | Nguyễn Viết Anh Minh |[vamnguyen](https://github.com/vamnguyen) |22520880@gm.uit.edu.vn |
-| 2 | 22520967 | Hồng Khải Nguyên |[unknown](https://github.com/unknown) |22520967@gm.uit.edu.vn |
+| 2 | 22520967 | Hồng Khải Nguyên |[Kevinzzz2004](https://github.com/Kevinzzz2004) |22520967@gm.uit.edu.vn |
 
 # 🔍 Đồ án Truy xuất Thông tin (Information Retrieval System)
 
