@@ -59,14 +59,36 @@ def search_route():
     # tokenize query with same tokenizer
     q_tokens = tokenize(query)
     q_str = " ".join(q_tokens)
+    
+    # Mapping of ranking methods
     if method == "cosine":
         results = ranker.rank_cosine(q_str, data, top_k=k)
     elif method == "bm25":
         results = ranker.rank_bm25(q_tokens, data, top_k=k)
+    elif method == "bm25_custom":
+        results = ranker.bm25_custom(q_tokens, data, top_k=k)
+    elif method == "bm25_plus":
+        results = ranker.bm25_plus(q_tokens, data, top_k=k)
     elif method == "ql":
         results = ranker.query_likelihood_dirichlet(q_tokens, data, top_k=k)
+    elif method == "ql_jm":
+        results = ranker.query_likelihood_jelinek_mercer(q_tokens, data, top_k=k)
+    elif method == "two_stage":
+        results = ranker.two_stage_smoothing(q_tokens, data, top_k=k)
+    elif method == "absolute_discount":
+        results = ranker.absolute_discount(q_tokens, data, top_k=k)
     elif method == "odds":
         results = ranker.odds_likelihood_ratio(q_tokens, data, top_k=k)
+    elif method == "pivoted":
+        results = ranker.pivoted_length_normalization(q_tokens, data, top_k=k)
+    elif method == "title_boost":
+        results = ranker.title_boosted_ranking(q_tokens, data, top_k=k)
+    elif method == "proximity":
+        results = ranker.proximity_ranking(q_tokens, data, top_k=k)
+    elif method == "dfr":
+        results = ranker.divergence_from_randomness(q_tokens, data, top_k=k)
+    elif method == "combined":
+        results = ranker.combined_scoring(q_tokens, data, top_k=k)
     else:
         results = ranker.rank_cosine(q_str, data, top_k=k)
 

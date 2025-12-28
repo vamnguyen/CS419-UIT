@@ -10,7 +10,7 @@
       <div class="card">
         <h2 class="site-title">Hệ thống Tìm kiếm Tài liệu (Demo)</h2>
         <p class="subtitle">
-          Thử nghiệm các phương pháp truy vấn: Cosine, BM25, QL, Odds
+          Thử nghiệm các phương pháp truy vấn: Cosine, BM25, Language Models, và nhiều hơn nữa
         </p>
 
         <form class="search-form" action="/search" method="post">
@@ -22,10 +22,28 @@
             required
           />
           <select class="search-select" name="method">
-            <option value="cosine">Cosine (TF-IDF)</option>
-            <option value="bm25">BM25</option>
-            <option value="ql">Query Likelihood</option>
-            <option value="odds">Odds (LR)</option>
+            <optgroup label="Vector Space Models">
+              <option value="cosine">Cosine (TF-IDF)</option>
+              <option value="pivoted">Pivoted Length Normalization</option>
+            </optgroup>
+            <optgroup label="BM25 Variants">
+              <option value="bm25">BM25 (Standard)</option>
+              <option value="bm25_custom">BM25 Custom (Tunable)</option>
+              <option value="bm25_plus">BM25+ (Long Doc Friendly)</option>
+            </optgroup>
+            <optgroup label="Language Models">
+              <option value="ql">QL Dirichlet Smoothing</option>
+              <option value="ql_jm">QL Jelinek-Mercer</option>
+              <option value="two_stage">Two-Stage Smoothing</option>
+              <option value="absolute_discount">Absolute Discount</option>
+              <option value="odds">Odds Likelihood Ratio</option>
+            </optgroup>
+            <optgroup label="Advanced Methods">
+              <option value="dfr">Divergence From Randomness</option>
+              <option value="title_boost">Title-Boosted BM25</option>
+              <option value="proximity">Proximity Ranking</option>
+              <option value="combined">Combined/Ensemble</option>
+            </optgroup>
           </select>
           <input
             class="search-number"
